@@ -74,7 +74,9 @@
     └── SCHEMA.md               (工作手册，约定规则)
 ```
 
-这套结构参考了 [Karpathy 的 LLM Wiki 模式](https://x.com/karpathy)：**同一个概念只有一个页面，永远更新而不是新建，知识像雪球一样越滚越大。**
+这套结构的核心设计来自 [Karpathy 的 LLM Wiki 思路](https://x.com/karpathy)：**同一个概念只有一个页面，永远更新而不是新建，知识像雪球一样越滚越大。**
+
+这个思路具体体现在两个地方：`concept-library/` 里每个工具只有一个页面（用得越多就越厚）；`/o` 指令在写入前会先查 index，有就更新，没有才新建——永远不产生重复页面。
 
 ---
 
@@ -234,4 +236,4 @@ Three questions: language, vault path, API key. Done.
 
 **Requirements:** macOS, Python 3.9+, Node.js, Claude Code, [Anthropic API key](https://console.anthropic.com)
 
-The vault structure follows [Karpathy's LLM Wiki pattern](https://x.com/karpathy): one page per concept, always update rather than create, knowledge compounds over time.
+The vault structure is built around [Karpathy's LLM Wiki pattern](https://x.com/karpathy): one page per concept, always update rather than create, knowledge compounds over time. This shapes two concrete behaviors: `concept-library/` has exactly one file per tool (it grows richer with each use), and the `/o` command always checks the index before writing — updating existing pages instead of creating duplicates.
